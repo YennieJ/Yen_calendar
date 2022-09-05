@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import dayjs from "dayjs";
 import "@fortawesome/fontawesome-free/js/all.js";
 
@@ -10,6 +10,16 @@ const Calendar = () => {
   dayjs.extend(weekOfYear);
 
   const [date, setDate] = useState(dayjs());
+
+  const formRef = useRef();
+  const inputRef = useRef();
+  const [input, setInput] = useState("");
+
+  const handleInputbutton = (event) => {
+    event.preventDefault();
+    setInput(inputRef.current.value);
+    formRef.current.reset();
+  };
 
   // ?true(1):다음 달 :false(0)는 이전 달
   const controlMonth = (e) =>
@@ -96,6 +106,7 @@ const Calendar = () => {
     }
     return dates;
   };
+
   return (
     <div className="wrapper">
       <div className="calendarHead">
@@ -115,6 +126,13 @@ const Calendar = () => {
       <div className="calendarBody">
         <div className="week">{week}</div>
         {showDate()}
+        <form ref={formRef} className="write">
+          <input ref={inputRef} type="text" />
+          <button onClick={handleInputbutton}>추가</button>
+        </form>
+        <ul>
+          <li>{input}</li>
+        </ul>
       </div>
     </div>
   );
