@@ -1,6 +1,9 @@
 import React, { useState, useRef } from "react";
 import dayjs from "dayjs";
 import "@fortawesome/fontawesome-free/js/all.js";
+import { useEffect } from "react";
+import Checkbox from "../../common/checkbox";
+import Todo from "./todo/todo";
 
 const Calendar = () => {
   const weekday = require("dayjs/plugin/weekday");
@@ -11,30 +14,6 @@ const Calendar = () => {
 
   const [date, setDate] = useState(dayjs());
 
-  // const formRef = useRef();
-  // const inputRef = useRef();
-  // const [input, setInput] = useState(["yen", "jin", "leah", "julie"]);
-
-  // const a = () => {
-  //   input.map((item, i) => <li key={i}>{item}</li>);
-  // };
-  // const handleInputbutton = (event) => {
-  //   event.preventDefault();
-  //   setInput();
-  //   formRef.current.reset();
-  // };
-
-  // const handleInputbutton = (event) => {
-  //   event.preventDefault();
-  //   setInput(inputRef.current.value);
-  //   formRef.current.reset();
-  // };
-
-  // const names = ["yen", "jin", "leah", "julie"];
-
-  // const nameList = names.map((name, i) => <li key={i}>{name}</li>);
-  // console.log(names);
-  // console.log(nameList);
   // ?true(1):다음 달 :false(0)는 이전 달
   const controlMonth = (e) =>
     e
@@ -54,7 +33,10 @@ const Calendar = () => {
 
   //오늘로
 
-  const goToday = () => setDate(dayjs());
+  const goToday = () => {
+    setDate(dayjs());
+    // inputRef.current.focus();
+  };
 
   // 요일
   const week = [];
@@ -66,6 +48,35 @@ const Calendar = () => {
     );
   }
 
+  //todo 를 위한
+  // const formRef = useRef();
+  // const inputRef = useRef();
+  // const [todoLists, setTodoLists] = useState(
+  //   () => JSON.parse(window.localStorage.getItem("todo")) || []
+  // );
+  // const [todoDate, setTodoDate] = useState(date.format("YYYYMMDD"));
+  ////
+
+  // const handleInputbutton = (event) => {
+  //   event.preventDefault();
+  //   setTodoLists([...todoLists, inputRef.current.value]);
+  //   formRef.current.reset();
+  //   inputRef.current.focus();
+  // };
+
+  // useEffect(() => {
+  //   window.localStorage.setItem("todo", JSON.stringify(todoLists));
+  // }, [todoLists]);
+  // ///
+
+  // const todoList = todoLists.map((todo, i) => (
+  //   <div key={i}>
+  //     <input type="checkbox" />
+  //     <span>{todo}</span>
+  //   </div>
+  // ));
+
+  ////////////
   const showDate = () => {
     // 초기값은 오늘
     const today = date;
@@ -98,54 +109,73 @@ const Calendar = () => {
                 .week(week)
                 .add(n + i, "day");
               //오늘 표시하기
-              let isSelected =
+              let isToday =
                 fixToday.format("YYYYMMDD") === current.format("YYYYMMDD")
-                  ? "selected"
+                  ? "today"
                   : "";
               //이번 달이 아닌 다른 달의 날짜면 회색으로
               let isGrayed =
                 current.format("MM") !== today.format("MM") ? "grayed" : "";
 
               return (
-                <span className={`box ${isSelected} ${isGrayed}`} key={i}>
-                  <div className="text">{current.format("DD")}</div>
-                </span>
+                <div className={`box ${isToday} ${isGrayed}`} key={i}>
+                  <div
+                    className="text"
+                    // onClick={() => {
+                    //   setTodoDate(current.format("YYYYMMDD"));
+                    //   inputRef.current.focus();
+                    // }}
+                    //
+                  >
+                    {current.format("DD")}
+                  </div>
+                  {/* <div>{todoLists.length}</div> */}
+                </div>
               );
             })}
         </div>
       );
     }
+
     return dates;
   };
 
   return (
     <div className="wrapper">
-      <div className="calendarHead">
-        <div className="year">{date.format("YYYY")}</div>
-        <div className="controlMonth">
-          {/* onClick 콜백함수 필요함(Too many lendering) */}
-          <div className="month-button" onClick={() => controlMonth(0)}>
-            <i className="fa-solid fa-angle-left"></i>
-          </div>
-          <div className="month">{date.format("MMMM")}</div>
+      <div className="calendar">
+        <div className="calendarHead">
+          <div className="year">{date.format("YYYY")}</div>
+          <div className="controlMonth">
+            {/* onClick 콜백함수 필요함(Too many lendering) */}
+            <div className="month-button" onClick={() => controlMonth(0)}>
+              <i className="fa-solid fa-angle-left"></i>
+            </div>
+            <div className="month">{date.format("MMMM")}</div>
 
-          <div className="month-button" onClick={() => controlMonth(1)}>
-            <i className="fa-solid fa-angle-right"></i>
+            <div className="month-button" onClick={() => controlMonth(1)}>
+              <i className="fa-solid fa-angle-right"></i>
+            </div>
+          </div>
+          <div className="today" onClick={goToday}>
+            Today
           </div>
         </div>
-        <div className="today" onClick={goToday}>
-          Today
+        <div className="calendarBody">
+          <div className="week">{week}</div>
+          {showDate()}
         </div>
       </div>
-      <div className="calendarBody">
-        <div className="week">{week}</div>
-        {showDate()}
-        {/* <form ref={formRef} className="write">
+      {/* <div className="todo">
+        <div>{todoDate}</div>
+        <div>{`오늘의 할일 ${todoLists.length}개`}</div>
+
+        <form ref={formRef} className="write">
           <input ref={inputRef} type="text" />
           <button onClick={handleInputbutton}>추가</button>
         </form>
-        <ul>{input}</ul> */}
-      </div>
+        {todoList}
+      </div> */}
+      <Todo></Todo>
     </div>
   );
 };
