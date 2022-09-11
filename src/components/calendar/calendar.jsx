@@ -1,8 +1,6 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import dayjs from "dayjs";
 import "@fortawesome/fontawesome-free/js/all.js";
-import { useEffect } from "react";
-import Checkbox from "../../common/checkbox";
 import Todo from "./todo/todo";
 
 const Calendar = () => {
@@ -175,7 +173,7 @@ const Calendar = () => {
         </form>
         {todoList}
       </div> */}
-      <Todo></Todo>
+      <Todo />
     </div>
   );
 };

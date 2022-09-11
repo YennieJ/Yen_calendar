@@ -43,6 +43,12 @@ const TodoItem = ({ todoItem, todoList, setTodoList }) => {
     }
   };
 
+  // useEffect(() => {
+  //   window.localStorage.setItem("todo", JSON.stringify(todoList));
+  //   // const filterd = todoList.filter((item) => item.deleted === false);
+  //   // localStorage.setItem("todo", JSON.stringify(filterd));
+  // }, [todoList]);
+
   const onClickDeleteButton = () => {
     if (window.confirm("정말로 지우실건가요?")) {
       const nextTodoList = todoList.map((item) => ({

@@ -8,14 +8,6 @@ const Checkbox = () => {
   const [edited, setEdited] = useState(false);
   // const [newText, setNewTest] = useState(todoItem.text);
 
-  const todoItema = todoList.map((todoItem) => {
-    console.log(todoItem);
-    return todoItem;
-  });
-
-  console.log(todoItema);
-  console.log(todoList);
-
   const onChangeInput = (e) => {
     setText(e.target.value);
   };
@@ -24,7 +16,7 @@ const Checkbox = () => {
 
     // todoItemList에 값 추가
     const nextTodoList = todoList.concat({
-      id: todoList.length,
+      id: todoList.length + 2,
       text,
       checked: false,
       deleted: false,

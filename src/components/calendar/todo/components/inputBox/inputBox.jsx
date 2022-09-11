@@ -14,7 +14,7 @@ const InputBox = ({ todoList, setTodoList }) => {
 
     // todoItemList에 값 추가
     const currentTodoList = todoList.concat({
-      id: todoList.length,
+      id: todoList.length + 1,
       text,
       checked: false,
       deleted: false,
