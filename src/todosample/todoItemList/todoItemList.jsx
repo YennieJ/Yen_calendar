@@ -6,10 +6,31 @@ const TodoItemList = ({ title, todoList, setTodoList, checkedList }) => {
     <div className="todoapp__list">
       {/* props로 부터 title 값을 전달 받음 */}
       <p className="todoapp__list-tit">{title}</p>
-
       <ul className="todoapp__list-ul">
         {todoList && // todoList가 있을때만 출력
+          todoList.map((todoItem) => {
+            // 삭제한 항목인 경우, 출력하지 않음 (deleted가 true)
+            if (todoItem.deleted === true) return null;
+
+            // checkedList 값에 따라 '할 일 목록' 또는 '완료한 목록'을 출력
+
+            if (checkedList !== todoItem.checked) return null;
+            return (
+              // map을 이용하여 ToDoItem을 출력
+              <TodoItem
+                key={todoItem.id}
+                todoItem={todoItem}
+                todoList={todoList}
+                setTodoList={setTodoList}
+              />
+            );
+          })}
+      </ul>
+
+      {/* <ul className="todoapp__list-ul">
+        {todoList && // todoList가 있을때만 출력
           todoList.map((todoItem) => (
+             // if (checkedList !== todoItem.checked) return;
             // map을 이용하여 ToDoItem을 출력
             <TodoItem
               key={todoItem.id}
@@ -18,7 +39,7 @@ const TodoItemList = ({ title, todoList, setTodoList, checkedList }) => {
               setTodoList={setTodoList}
             />
           ))}
-      </ul>
+      </ul> */}
     </div>
   );
 };
@@ -37,7 +58,7 @@ export default TodoItemList;
 //           if (todoItem.deleted === true) return null;
 
 //           // checkedList 값에 따라 '할 일 목록' 또는 '완료한 목록'을 출력
-//           // if (checkedList !== todoItem.checked) return;
+//
 
 //           return (
 //             // map을 이용하여 ToDoItem을 출력

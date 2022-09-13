@@ -6,12 +6,12 @@ const TodoItem = ({ todoItem, todoList, setTodoList }) => {
 
   const editInputRef = useRef(null);
 
-  useEffect(() => {
-    // edit 모드일때 포커싱을 한다.
-    if (edited) {
-      editInputRef.current.focus();
-    }
-  }, [edited]);
+  // useEffect(() => {
+  //   // edit 모드일때 포커싱을 한다.
+  //   if (edited) {
+  //     editInputRef.current.focus();
+  //   }
+  // }, [edited]);
 
   const onChangeCheckbox = () => {
     const nextTodoList = todoList.map((item) => ({

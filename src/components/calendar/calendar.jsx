@@ -12,7 +12,7 @@ const Calendar = () => {
 
   const [date, setDate] = useState(dayjs());
 
-  // ?true(1):다음 달 :false(0)는 이전 달
+  // ?true(1)는 다음 달 :false(0)는 이전 달
   const controlMonth = (e) =>
     e
       ? setDate(date.clone().add(30, "day"))
@@ -46,35 +46,6 @@ const Calendar = () => {
     );
   }
 
-  //todo 를 위한
-  // const formRef = useRef();
-  // const inputRef = useRef();
-  // const [todoLists, setTodoLists] = useState(
-  //   () => JSON.parse(window.localStorage.getItem("todo")) || []
-  // );
-  // const [todoDate, setTodoDate] = useState(date.format("YYYYMMDD"));
-  ////
-
-  // const handleInputbutton = (event) => {
-  //   event.preventDefault();
-  //   setTodoLists([...todoLists, inputRef.current.value]);
-  //   formRef.current.reset();
-  //   inputRef.current.focus();
-  // };
-
-  // useEffect(() => {
-  //   window.localStorage.setItem("todo", JSON.stringify(todoLists));
-  // }, [todoLists]);
-  // ///
-
-  // const todoList = todoLists.map((todo, i) => (
-  //   <div key={i}>
-  //     <input type="checkbox" />
-  //     <span>{todo}</span>
-  //   </div>
-  // ));
-
-  ////////////
   const showDate = () => {
     // 초기값은 오늘
     const today = date;
@@ -163,17 +134,8 @@ const Calendar = () => {
           {showDate()}
         </div>
       </div>
-      {/* <div className="todo">
-        <div>{todoDate}</div>
-        <div>{`오늘의 할일 ${todoLists.length}개`}</div>
 
-        <form ref={formRef} className="write">
-          <input ref={inputRef} type="text" />
-          <button onClick={handleInputbutton}>추가</button>
-        </form>
-        {todoList}
-      </div> */}
-      <Todo />
+      <Todo date={date} />
     </div>
   );
 };
