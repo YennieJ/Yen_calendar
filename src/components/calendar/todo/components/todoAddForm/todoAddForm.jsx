@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 
-const TodoAddForm = ({ createTodo, date }) => {
+const TodoAddForm = ({ createTodo, todoDate = { todoDate }, todos }) => {
   const formRef = useRef();
   const todoRef = useRef();
 
@@ -11,17 +11,17 @@ const TodoAddForm = ({ createTodo, date }) => {
       id: Date.now(),
       text: todoRef.current.value || "",
       checked: false,
+      date: todoDate,
     };
     formRef.current.reset();
     createTodo(todo);
   };
 
-  const [todoDate, setTodoDate] = useState(date.format("YYYYMMDD"));
-
   return (
     <>
       {/* 아이템 입력 창 */}
-      <div>{todoDate}</div>
+      {/* <div>{Object.keys(todos).length}개</div> */}
+
       <form ref={formRef}>
         <input ref={todoRef} placeholder="할일을 입력하세요" type="text" />
         <button onClick={addTodoButton}>Add</button>
