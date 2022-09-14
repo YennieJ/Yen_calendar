@@ -8,11 +8,12 @@ const todoEditForm = ({
   todos,
   checkedList,
   title,
+  selectedDateData,
 }) => (
   <section>
     <p>{title}</p>
     <ul>
-      {Object.keys(todos).map((todoItem) => {
+      {selectedDateData.map((todoItem) => {
         // checkedList 가 false면 todoItem 숨기기
         if (checkedList !== todos[todoItem].checked) return null;
         return (

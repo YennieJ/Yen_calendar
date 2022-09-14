@@ -9,10 +9,15 @@ const Todo = ({ todoDate }) => {
       if (saved !== null) {
         return JSON.parse(saved);
       } else {
-        return [""];
+        return {};
       }
     }
   });
+
+  //날짜 별 TodoList
+  const selectedDateData = Object.keys(todos).filter(
+    (item) => todos[item].date === todoDate
+  );
 
   const checkTodo = (todo) =>
     setTodos((todos) => {
@@ -57,6 +62,7 @@ const Todo = ({ todoDate }) => {
         todos={todos}
         setTodos={setTodos}
         checkedList={false}
+        selectedDateData={selectedDateData}
       />
       <TodoEditForm
         title={"완료된 항목"}
@@ -66,32 +72,10 @@ const Todo = ({ todoDate }) => {
         todos={todos}
         setTodos={setTodos}
         checkedList={true}
+        selectedDateData={selectedDateData}
       />
     </div>
   );
 };
 
 export default Todo;
-// const [todoList, setTodoList] = useState([]);
-// () => JSON.parse(window.localStorage.getItem("todo")) || console.log(todoList);
-// return (
-// <div>
-//   {/* ToDo Item을 추가할 수 있는 input 박스 */}
-//   <InputBox todoList={todoList} setTodoList={setTodoList} />
-
-//   {/* 할 일 Item 리스트 */}
-//   <ToDoItemList
-//     title={"할 일"}
-//     todoList={todoList}
-//     setTodoList={setTodoList}
-//     checkedList={false} // (체크되지 않은) 할 일 목록
-//   />
-
-//     {/* <ToDoItemList
-//         title={"없앨꺼야"}
-//         todoList={todoList}
-//         setTodoList={setTodoList}
-//         checkedList={true} // (체크되어 있는)완료한 목록
-//       /> */}
-//   </div>
-// );
