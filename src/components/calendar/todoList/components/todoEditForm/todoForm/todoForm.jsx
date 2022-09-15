@@ -52,7 +52,7 @@ const TodoForm = ({ deleteTodo, createTodo, todoItem, checkTodo }) => {
   //delete todo를 위한
   const deletedTodo = (e) => {
     e.preventDefault();
-    deleteTodo(todoItem);
+    if (window.confirm("지우시겠습니까?")) deleteTodo(todoItem);
   };
   return (
     <>

@@ -1,7 +1,7 @@
 import React from "react";
 import dayjs from "dayjs";
 
-const CalendarHead = ({ date, setDate }) => {
+const CalendarHead = ({ date, setDate, setTodoDate }) => {
   const weekOfYear = require("dayjs/plugin/weekOfYear");
   const weekday = require("dayjs/plugin/weekday");
 

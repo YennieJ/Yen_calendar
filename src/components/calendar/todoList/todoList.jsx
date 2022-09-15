@@ -2,22 +2,17 @@ import React, { useState, useEffect } from "react";
 import TodoEditForm from "./components/todoEditForm/todoEditForm";
 import TodoAddForm from "./components/todoAddForm/todoAddForm";
 
-const Todo = ({ todoDate }) => {
+const TodoList = ({ todoDate }) => {
   const [todos, setTodos] = useState(() => {
     if (typeof window !== "undefined") {
       const saved = window.localStorage.getItem("Todo_Data");
       if (saved !== null) {
         return JSON.parse(saved);
       } else {
-        return {};
+        return [];
       }
     }
   });
-
-  //날짜 별 TodoList
-  const selectedDateData = Object.keys(todos).filter(
-    (item) => todos[item].date === todoDate
-  );
 
   const checkTodo = (todo) =>
     setTodos((todos) => {
@@ -54,28 +49,29 @@ const Todo = ({ todoDate }) => {
 
       {/* Todo Item show and edit form */}
       {/* checkedList : false N true(uncheck N check)를 통해서 해야 할 일과 완료 된 일 구분하기  */}
+
       <TodoEditForm
-        title={"오늘의 할 일"}
+        title={"TodoList"}
         checkTodo={checkTodo}
         createTodo={createTodo}
         deleteTodo={deleteTodo}
         todos={todos}
         setTodos={setTodos}
         checkedList={false}
-        selectedDateData={selectedDateData}
+        todoDate={todoDate}
       />
       <TodoEditForm
-        title={"완료된 항목"}
+        title={"Done"}
         checkTodo={checkTodo}
         createTodo={createTodo}
         deleteTodo={deleteTodo}
         todos={todos}
+        todoDate={todoDate}
         setTodos={setTodos}
         checkedList={true}
-        selectedDateData={selectedDateData}
       />
     </div>
   );
 };
 
-export default Todo;
+export default TodoList;

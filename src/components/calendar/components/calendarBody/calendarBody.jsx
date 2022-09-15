@@ -47,12 +47,11 @@ const CalendarBody = ({ date, todoDate, setTodoDate }) => {
                   <div
                     className="text"
                     onClick={() => {
-                      setTodoDate(current.format("MMMMDD"));
+                      setTodoDate(current.format("YYYYMMDD"));
                     }}
                   >
                     {current.format("DD")}
                   </div>
-                  {/* <div>{todoLists.length}</div> */}
                 </div>
               );
             })}
@@ -64,7 +63,6 @@ const CalendarBody = ({ date, todoDate, setTodoDate }) => {
 
   return (
     <div>
-      <h1>CalnedarBody</h1>
       <div className="calendarBody">{showDate()}</div>
       {todoDate}
     </div>
