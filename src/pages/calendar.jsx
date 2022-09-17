@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import dayjs from "dayjs";
 import "@fortawesome/fontawesome-free/js/all.js";
-import Todo from "./todoList/todoList";
-import CalendarBody from "./components/calendarBody/calendarBody";
-import CalendarHead from "./components/calendarHead/calendarHead";
+import CalendarHead from "../components/calendar/calendarHead/calendarHead";
+import CalendarBody from "../components/calendar/calendarBody/calendarBody";
 
 const Calendar = () => {
   const today = dayjs();
@@ -24,11 +23,15 @@ const Calendar = () => {
   return (
     <div className="wrapper">
       <CalendarHead date={date} setDate={setDate} setTodoDate={setTodoDate} />
-      <div className="calendarbottom"></div>
       <CalendarBody date={date} todoDate={todoDate} setTodoDate={setTodoDate} />
-      <Todo todoDate={todoDate} />
     </div>
   );
 };
 
 export default Calendar;
+
+{
+  /* <div className="calendarbottom"></div>
+      <CalendarBody date={date} todoDate={todoDate} setTodoDate={setTodoDate} />
+      <Todo todoDate={todoDate} /> */
+}

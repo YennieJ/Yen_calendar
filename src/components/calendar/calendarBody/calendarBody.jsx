@@ -1,7 +1,21 @@
 import React from "react";
 import dayjs from "dayjs";
+import * as S from "./calendarBody.styled";
 
 const CalendarBody = ({ date, todoDate, setTodoDate }) => {
+  const weekday = require("dayjs/plugin/weekday");
+  dayjs.extend(weekday);
+
+  // 요일
+  const week = [];
+  for (let i = 0; i < 7; i++) {
+    week.push(
+      <div className="day" key={i}>
+        {dayjs().weekday(i).format("ddd")}
+      </div>
+    );
+  }
+
   const showDate = () => {
     // 초기값은 오늘
     const today = date;
@@ -23,7 +37,7 @@ const CalendarBody = ({ date, todoDate, setTodoDate }) => {
     // 길이가 7개인 배열에 0으로 채우고, map (현재값,인덱스)로 배열 재설정
     for (let week = startWeek; week <= endWeek; week++) {
       dates.push(
-        <div className="dates" key={week}>
+        <S.GridWeek key={week}>
           {Array(7)
             .fill(0)
             .map((n, i) => {
@@ -44,18 +58,18 @@ const CalendarBody = ({ date, todoDate, setTodoDate }) => {
 
               return (
                 <div className={`box ${isToday} ${isGrayed}`} key={i}>
-                  <div
+                  <S.Text
                     className="text"
                     onClick={() => {
                       setTodoDate(current.format("YYYYMMDD"));
                     }}
                   >
                     {current.format("DD")}
-                  </div>
+                  </S.Text>
                 </div>
               );
             })}
-        </div>
+        </S.GridWeek>
       );
     }
     return dates;
@@ -63,8 +77,10 @@ const CalendarBody = ({ date, todoDate, setTodoDate }) => {
 
   return (
     <div>
+      <S.GridWeek>{week}</S.GridWeek>
+
       <div className="calendarBody">{showDate()}</div>
-      {todoDate}
+      {/* {todoDate} */}
     </div>
   );
 };
