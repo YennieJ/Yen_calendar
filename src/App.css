@@ -1,19 +1,44 @@
 * {
   box-sizing: border-box;
   text-align: center;
+  /* margin: 0; */
 }
 
-.wrapper {
+/* .wrapper {
   border: 5px solid blue;
   text-align: center;
+}
+
+.calendarHead {
+  border: 3px solid red;
+}
+
+.year {
+  text-align: center;
+  font-size: 2rem;
 }
 
 .month {
   font-size: 3rem;
 }
 
+.controlMonth {
+  font-size: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+}
+
 .calendarBody {
   border: 3px solid green;
+}
+
+.week,
+.dates {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin: 10px;
+  border: 1px solid black;
 }
 
 .day:nth-child(1),
@@ -29,10 +54,13 @@
   height: 5rem;
 }
 .box {
-  border: 1px solid orange;
+  border: 1px solid black;
   position: relative;
 }
 
+.today {
+  padding: 1px;
+}
 .today .text {
   position: absolute;
   right: 0;
@@ -44,6 +72,12 @@
   border-radius: 50%;
 }
 
+.text {
+  font-size: 1rem;
+  text-align: end;
+  padding: 3px;
+}
+
 .grayed .text {
   opacity: 0.3;
-}
+} */

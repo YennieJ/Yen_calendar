@@ -3,11 +3,17 @@ import dayjs from "dayjs";
 import "@fortawesome/fontawesome-free/js/all.js";
 import CalendarHead from "../components/calendar/calendarHead/calendarHead";
 import CalendarBody from "../components/calendar/calendarBody/calendarBody";
+import Sample from "../components/calendar/calendarBody/sample";
+import Todo from "../components/todoList/todoList";
 
 const Calendar = () => {
   const today = dayjs();
   const [date, setDate] = useState(today);
   const [todoDate, setTodoDate] = useState(date.format("YYYYMMDD"));
+
+  // ?true(1)는 다음 달 :false(0)는 이전 달
+  const controlMonth = (e) =>
+    e ? setDate(date.clone().date(32)) : setDate(date.clone().date(0));
 
   // // 이전 달
   // const prevMonth = () => {
@@ -22,16 +28,28 @@ const Calendar = () => {
 
   return (
     <div className="wrapper">
-      <CalendarHead date={date} setDate={setDate} setTodoDate={setTodoDate} />
-      <CalendarBody date={date} todoDate={todoDate} setTodoDate={setTodoDate} />
+      <CalendarHead
+        date={date}
+        setDate={setDate}
+        setTodoDate={setTodoDate}
+        controlMonth={controlMonth}
+        today={today}
+      />
+      <CalendarBody
+        date={date}
+        todoDate={todoDate}
+        setTodoDate={setTodoDate}
+        controlMonth={controlMonth}
+      />
+      {/* <Sample
+        date={date}
+        todoDate={todoDate}
+        setTodoDate={setTodoDate}
+        controlMonth={controlMonth}
+      /> */}
+      <Todo todoDate={todoDate} />
     </div>
   );
 };
 
 export default Calendar;
-
-{
-  /* <div className="calendarbottom"></div>
-      <CalendarBody date={date} todoDate={todoDate} setTodoDate={setTodoDate} />
-      <Todo todoDate={todoDate} /> */
-}

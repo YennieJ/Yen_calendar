@@ -2,21 +2,14 @@ import React from "react";
 import dayjs from "dayjs";
 import * as S from "./calendarHead.styled";
 
-const CalendarHead = ({ date, setDate, setTodoDate }) => {
+const CalendarHead = ({ today, date, setDate, setTodoDate, controlMonth }) => {
   const weekOfYear = require("dayjs/plugin/weekOfYear");
-
   dayjs.extend(weekOfYear);
-
-  // ?true(1)는 다음 달 :false(0)는 이전 달
-  const controlMonth = (e) =>
-    e
-      ? setDate(date.clone().add(30, "day"))
-      : setDate(date.clone().subtract(30, "day"));
 
   //오늘로
   const goToday = () => {
-    setDate(dayjs());
-    // inputRef.current.focus();
+    setDate(today);
+    setTodoDate(today.format("YYYYMMDD"));
   };
 
   return (
@@ -28,15 +21,13 @@ const CalendarHead = ({ date, setDate, setTodoDate }) => {
           <S.ButtonMonth onClick={() => controlMonth(0)}>
             <i className="fa-solid fa-angle-left"></i>
           </S.ButtonMonth>
-          <div className="month">{date.format("MMMM")}</div>
+          <S.FontMonth>{date.format("MMMM")}</S.FontMonth>
 
           <S.ButtonMonth onClick={() => controlMonth(1)}>
             <i className="fa-solid fa-angle-right"></i>
           </S.ButtonMonth>
         </S.GridMonth>
-        <div className="today" onClick={goToday}>
-          Today
-        </div>
+        <S.ButtonToday onClick={goToday}>Today</S.ButtonToday>
       </div>
     </div>
   );
