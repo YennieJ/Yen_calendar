@@ -4,7 +4,8 @@ import "@fortawesome/fontawesome-free/js/all.js";
 import CalendarHead from "../components/calendar/calendarHead/calendarHead";
 import CalendarBody from "../components/calendar/calendarBody/calendarBody";
 import Sample from "../components/calendar/calendarBody/sample";
-import Todo from "../components/todoList/todoList";
+import TodoList from "../components/todoList/todoList";
+import SampleTodoList from "../sampletodoList/sampletodoList";
 
 const Calendar = () => {
   const today = dayjs();
@@ -47,7 +48,8 @@ const Calendar = () => {
         setTodoDate={setTodoDate}
         controlMonth={controlMonth}
       /> */}
-      <Todo todoDate={todoDate} />
+      <TodoList todoDate={todoDate} />
+      {/* <SampleTodoList todoDate={todoDate} /> */}
     </div>
   );
 };

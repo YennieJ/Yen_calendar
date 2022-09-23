@@ -1,7 +1,7 @@
-import React, { useRef } from "react";
-import * as S from "./todoAddForm.styled";
+import React, { useState, useRef } from "react";
+import * as S from "./sampletodoAddForm.styled";
 
-const TodoAddForm = ({ createTodo, todoDate, todos }) => {
+const SampleTodoAddForm = ({ createTodo, todoDate }) => {
   const formRef = useRef();
   const todoRef = useRef();
 
@@ -36,4 +36,4 @@ const TodoAddForm = ({ createTodo, todoDate, todos }) => {
   );
 };
 
-export default TodoAddForm;
+export default SampleTodoAddForm;

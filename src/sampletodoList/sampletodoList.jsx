@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import TodoEditForm from "./components/todoEditForm/todoEditForm";
-import TodoAddForm from "./components/todoAddForm/todoAddForm";
-import * as S from "./todoList.styled";
+import SampleTodoEditForm from "./components/sampletodoEditForm/sampletodoEditForm";
+import SampleTodoAddForm from "./components/sampletodoAddForm/sampletodoAddForm";
+import * as S from "./sampletodoList.styled";
 
-const TodoList = ({ todoDate }) => {
+const SampleTodoList = ({ todoDate }) => {
   const [todos, setTodos] = useState(() => {
     if (typeof window !== "undefined") {
       const saved = window.localStorage.getItem("Todo_Data");
@@ -44,17 +44,22 @@ const TodoList = ({ todoDate }) => {
   }, [todos]);
 
   return (
-    <div>
-      <div style={{ fontSize: "100px" }}>{todoDate}</div>
+    <div className="sampleTodoList">
+      <h1>SAMPLE</h1>
+      {/* <S.FontTodoList className="폰트사이즈">{todoDate}</S.FontTodoList> */}
 
       {/* Todo item input form */}
-      <TodoAddForm createTodo={createTodo} todos={todos} todoDate={todoDate} />
+      <SampleTodoAddForm
+        createTodo={createTodo}
+        todos={todos}
+        todoDate={todoDate}
+      />
 
       {/* Todo Item show and edit form */}
       {/* checkedList : false N true(uncheck N check)를 통해서 해야 할 일과 완료 된 일 구분하기  */}
-      <S.GridTodoEdit>
-        <TodoEditForm
-          title={"TodoList"}
+      <S.GridTodoEdit className="그리드만들기">
+        <SampleTodoEditForm
+          title={"SampleTodoList"}
           checkTodo={checkTodo}
           createTodo={createTodo}
           deleteTodo={deleteTodo}
@@ -63,7 +68,7 @@ const TodoList = ({ todoDate }) => {
           checkedList={false}
           todoDate={todoDate}
         />
-        <TodoEditForm
+        <SampleTodoEditForm
           title={"Done"}
           checkTodo={checkTodo}
           createTodo={createTodo}
@@ -78,4 +83,4 @@ const TodoList = ({ todoDate }) => {
   );
 };
 
-export default TodoList;
+export default SampleTodoList;

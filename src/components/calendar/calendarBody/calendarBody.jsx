@@ -67,7 +67,6 @@ const CalendarBody = ({ date, todoDate, setTodoDate, controlMonth }) => {
 
   return (
     <div>
-      <h1>SAMPLE</h1>
       <S.GridWeek>{week}</S.GridWeek>
       <S.GridWeek>{currentDate}</S.GridWeek>
     </div>

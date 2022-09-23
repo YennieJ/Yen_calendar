@@ -4,6 +4,14 @@
   /* margin: 0; */
 }
 
+.sampleTodoList {
+  background-color: palevioletred;
+}
+
+.ex {
+  background-color: red;
+}
+
 /* .wrapper {
   border: 5px solid blue;
   text-align: center;

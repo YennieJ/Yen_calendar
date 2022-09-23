@@ -1,7 +1,8 @@
 import React, { useRef, useState, useEffect } from "react";
-import * as S from "../todoForm/todoForm.styled";
+import * as S from "../sampletodoForm/sampletodoForm.styled";
+import Button from "./button/button";
 
-const TodoForm = ({ deleteTodo, createTodo, todoItem, checkTodo }) => {
+const SampleTodoForm = ({ deleteTodo, createTodo, todoItem, checkTodo }) => {
   const [editedMode, setEditedMode] = useState(false);
   const [newText, setNewText] = useState(todoItem.text);
 
@@ -59,11 +60,8 @@ const TodoForm = ({ deleteTodo, createTodo, todoItem, checkTodo }) => {
     <>
       <S.Li>
         {/* 아이템 완료 체크,체크해제를 위한 */}
-        <input
-          type="checkbox"
-          checked={todoItem.checked}
-          onChange={handleCheckbox}
-        />
+
+        <Button checked={todoItem.checked} handleCheckbox={handleCheckbox} />
         {
           // todoItem 내용: editedMode가 true일땐 input,false일땐 span
           editedMode ? (
@@ -103,4 +101,4 @@ const TodoForm = ({ deleteTodo, createTodo, todoItem, checkTodo }) => {
   );
 };
 
-export default TodoForm;
+export default SampleTodoForm;
