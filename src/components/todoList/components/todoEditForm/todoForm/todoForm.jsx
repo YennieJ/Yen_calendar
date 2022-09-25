@@ -1,5 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import * as S from "../todoForm/todoForm.styled";
+import * as B from "../../../../../style/button/button.styled";
+import Checkbox from "./checkbox/checkbox.styled";
 
 const TodoForm = ({ deleteTodo, createTodo, todoItem, checkTodo }) => {
   const [editedMode, setEditedMode] = useState(false);
@@ -57,17 +59,14 @@ const TodoForm = ({ deleteTodo, createTodo, todoItem, checkTodo }) => {
   };
   return (
     <>
-      <S.Li>
+      <S.Li checked={todoItem.checked}>
         {/* 아이템 완료 체크,체크해제를 위한 */}
-        <input
-          type="checkbox"
-          checked={todoItem.checked}
-          onChange={handleCheckbox}
-        />
+        <Checkbox checked={todoItem.checked} handleCheckbox={handleCheckbox} />
         {
           // todoItem 내용: editedMode가 true일땐 input,false일땐 span
           editedMode ? (
             <input
+              className="newText"
               type="text"
               value={newText}
               ref={editInputRef}
@@ -75,7 +74,7 @@ const TodoForm = ({ deleteTodo, createTodo, todoItem, checkTodo }) => {
               onKeyPress={handleNewText}
             ></input>
           ) : (
-            <span className="newText">{newText}</span>
+            <div className="newText">{newText}</div>
           )
         }
 
@@ -84,20 +83,20 @@ const TodoForm = ({ deleteTodo, createTodo, todoItem, checkTodo }) => {
           // check 상태 (=완료된 항목) 때 수정버튼 숨기기
           !todoItem.checked ? (
             editedMode ? (
-              <S.Button type="button" onClick={toggleEditButton}>
-                <S.IconTumbsUp />
-              </S.Button>
+              <B.StyleButton type="button" onClick={toggleEditButton}>
+                <B.IconTumbsUp />
+              </B.StyleButton>
             ) : (
-              <S.Button type="button" onClick={toggleEditButton}>
-                <S.IconPencil />
-              </S.Button>
+              <B.StyleButton type="button" onClick={toggleEditButton}>
+                <B.IconPencil />
+              </B.StyleButton>
             )
           ) : null
         }
 
-        <S.Button onClick={deletedTodo}>
-          <S.IconTrashbin />
-        </S.Button>
+        <B.StyleButton onClick={deletedTodo}>
+          <B.IconTrashbin />
+        </B.StyleButton>
       </S.Li>
     </>
   );

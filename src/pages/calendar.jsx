@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import dayjs from "dayjs";
-import "@fortawesome/fontawesome-free/js/all.js";
+import * as S from "../style/calendar.styled";
 import CalendarHead from "../components/calendar/calendarHead/calendarHead";
 import CalendarBody from "../components/calendar/calendarBody/calendarBody";
-import Sample from "../components/calendar/calendarBody/sample";
 import TodoList from "../components/todoList/todoList";
-import SampleTodoList from "../sampletodoList/sampletodoList";
 
 const Calendar = () => {
   const today = dayjs();
@@ -28,7 +26,7 @@ const Calendar = () => {
   // };
 
   return (
-    <div className="wrapper">
+    <>
       <CalendarHead
         date={date}
         setDate={setDate}
@@ -36,21 +34,16 @@ const Calendar = () => {
         controlMonth={controlMonth}
         today={today}
       />
-      <CalendarBody
-        date={date}
-        todoDate={todoDate}
-        setTodoDate={setTodoDate}
-        controlMonth={controlMonth}
-      />
-      {/* <Sample
-        date={date}
-        todoDate={todoDate}
-        setTodoDate={setTodoDate}
-        controlMonth={controlMonth}
-      /> */}
-      <TodoList todoDate={todoDate} />
-      {/* <SampleTodoList todoDate={todoDate} /> */}
-    </div>
+      <S.CalendarStyle>
+        <CalendarBody
+          date={date}
+          todoDate={todoDate}
+          setTodoDate={setTodoDate}
+          controlMonth={controlMonth}
+        />
+        <TodoList todoDate={todoDate} />
+      </S.CalendarStyle>
+    </>
   );
 };
 

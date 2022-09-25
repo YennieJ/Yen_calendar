@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import * as S from "./todoAddForm.styled";
+import * as B from "../../../../style/button/button.styled";
 
 const TodoAddForm = ({ createTodo, todoDate, todos }) => {
   const formRef = useRef();
@@ -27,10 +28,10 @@ const TodoAddForm = ({ createTodo, todoDate, todos }) => {
       {/* <div>오늘의 할 일??개</div> */}
       <form ref={formRef}>
         <S.TodoInput ref={todoRef} />
-        <S.Buttonplus onClick={addTodoButton}>
+        <B.StyleButton onClick={addTodoButton}>
           {" "}
-          <S.IconPlus />
-        </S.Buttonplus>
+          <B.IconPlus />
+        </B.StyleButton>
       </form>
     </>
   );

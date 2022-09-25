@@ -17,26 +17,26 @@ const TodoList = ({ todoDate }) => {
 
   const checkTodo = (todo) =>
     setTodos((todos) => {
-      const updated = { ...todos };
-      updated[todo.id] = todo;
-      return updated;
+      const checked = { ...todos };
+      checked[todo.id] = todo;
+      return checked;
     });
 
   const createTodo = (todo) => {
     setTodos((todos) => {
-      const updated = { ...todos };
-      updated[todo.id] = todo;
-      return updated;
+      const created = { ...todos };
+      created[todo.id] = todo;
+      return created;
     });
   };
 
   const deleteTodo = (todo) =>
     setTodos((todos) => {
-      const updated = { ...todos };
-      delete updated[todo.id];
-      return updated;
+      const deleted = { ...todos };
+      delete deleted[todo.id];
+      return deleted;
     });
-  //todo = todoitem / todos에 저장된 하나의 아이템 ,, checked가 true일 때 삭제 하고싶다
+  //todo = todoitem / todos에 저장된 하나의 아이템 ,,
 
   // 로컬스토리지 생성
   useEffect(() => {
@@ -45,10 +45,9 @@ const TodoList = ({ todoDate }) => {
 
   return (
     <div>
-      <div style={{ fontSize: "100px" }}>{todoDate}</div>
-
       {/* Todo item input form */}
       <TodoAddForm createTodo={createTodo} todos={todos} todoDate={todoDate} />
+      <S.FontTodoDate>{todoDate}</S.FontTodoDate>
 
       {/* Todo Item show and edit form */}
       {/* checkedList : false N true(uncheck N check)를 통해서 해야 할 일과 완료 된 일 구분하기  */}

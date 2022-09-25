@@ -60,8 +60,8 @@ const SampleTodoForm = ({ deleteTodo, createTodo, todoItem, checkTodo }) => {
     <>
       <S.Li>
         {/* 아이템 완료 체크,체크해제를 위한 */}
-
-        <Button checked={todoItem.checked} handleCheckbox={handleCheckbox} />
+        {/* 
+        <Button checked={todoItem.checked} handleCheckbox={handleCheckbox} /> */}
         {
           // todoItem 내용: editedMode가 true일땐 input,false일땐 span
           editedMode ? (

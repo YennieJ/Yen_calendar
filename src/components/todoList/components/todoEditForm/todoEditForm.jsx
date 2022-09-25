@@ -1,5 +1,6 @@
 import React from "react";
 import TodoForm from "./todoForm/todoForm";
+import * as S from "./todoEditForm.styled";
 
 const TodoEditForm = ({
   checkTodo,
@@ -16,7 +17,7 @@ const TodoEditForm = ({
   );
 
   return (
-    <section>
+    <S.TodoEditFormStyle>
       <p>{title}</p>
       <ul>
         {selectedDateData.map((todoItem) => {
@@ -33,7 +34,7 @@ const TodoEditForm = ({
           );
         })}
       </ul>
-    </section>
+    </S.TodoEditFormStyle>
   );
 };
 export default TodoEditForm;

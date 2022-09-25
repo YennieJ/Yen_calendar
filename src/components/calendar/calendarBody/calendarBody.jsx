@@ -52,24 +52,28 @@ const CalendarBody = ({ date, todoDate, setTodoDate, controlMonth }) => {
       };
 
       dates.push(
-        <S.Diffrent
+        <S.CheckDate
           isToday={isToday}
           isGrayed={isGrayed}
           selectDate={selectDate}
           onClick={selectedDate}
         >
           {current.format("DD")}
-        </S.Diffrent>
+        </S.CheckDate>
       );
     }
   }
-  const currentDate = dates.map((date, i) => <S.Text key={i}>{date}</S.Text>);
+  const currentDate = dates.map((date, i) => (
+    <S.Text date key={i}>
+      {date}
+    </S.Text>
+  ));
 
   return (
-    <div>
+    <S.Container>
       <S.GridWeek>{week}</S.GridWeek>
       <S.GridWeek>{currentDate}</S.GridWeek>
-    </div>
+    </S.Container>
   );
 };
 
