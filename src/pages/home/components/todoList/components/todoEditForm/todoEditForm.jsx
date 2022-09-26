@@ -1,5 +1,7 @@
 import React from "react";
-import TodoForm from "./todoForm/todoForm";
+
+import TodoForm from "./todoForm";
+
 import * as S from "./todoEditForm.styled";
 
 const TodoEditForm = ({

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import dayjs from "dayjs";
-import * as S from "../style/calendar.styled";
-import CalendarHead from "../components/calendar/calendarHead/calendarHead";
-import CalendarBody from "../components/calendar/calendarBody/calendarBody";
-import TodoList from "../components/todoList/todoList";
+import Header from "./components/header";
+import Calendar from "./components/calendar";
+import TodoList from "./components/todoList";
 
-const Calendar = () => {
+import * as S from "./Home.styled";
+
+const Home = () => {
   const today = dayjs();
   const [date, setDate] = useState(today);
   const [todoDate, setTodoDate] = useState(date.format("YYYYMMDD"));
@@ -27,24 +28,24 @@ const Calendar = () => {
 
   return (
     <>
-      <CalendarHead
+      <Header
         date={date}
         setDate={setDate}
         setTodoDate={setTodoDate}
         controlMonth={controlMonth}
         today={today}
       />
-      <S.CalendarStyle>
-        <CalendarBody
+      <S.HomeStyle>
+        <Calendar
           date={date}
           todoDate={todoDate}
           setTodoDate={setTodoDate}
           controlMonth={controlMonth}
         />
         <TodoList todoDate={todoDate} />
-      </S.CalendarStyle>
+      </S.HomeStyle>
     </>
   );
 };
 
-export default Calendar;
+export default Home;

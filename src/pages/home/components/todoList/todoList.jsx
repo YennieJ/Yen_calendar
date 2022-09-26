@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
-import TodoEditForm from "./components/todoEditForm/todoEditForm";
-import TodoAddForm from "./components/todoAddForm/todoAddForm";
+
+import TodoEditForm from "./components/todoEditForm";
+import TodoAddForm from "./components/todoAddForm";
+
 import * as S from "./todoList.styled";
 
 const TodoList = ({ todoDate }) => {
@@ -14,6 +16,10 @@ const TodoList = ({ todoDate }) => {
       }
     }
   });
+  // 로컬스토리지 생성
+  useEffect(() => {
+    window.localStorage.setItem("Todo_Data", JSON.stringify(todos));
+  }, [todos]);
 
   const checkTodo = (todo) =>
     setTodos((todos) => {
@@ -37,11 +43,6 @@ const TodoList = ({ todoDate }) => {
       return deleted;
     });
   //todo = todoitem / todos에 저장된 하나의 아이템 ,,
-
-  // 로컬스토리지 생성
-  useEffect(() => {
-    window.localStorage.setItem("Todo_Data", JSON.stringify(todos));
-  }, [todos]);
 
   return (
     <div>

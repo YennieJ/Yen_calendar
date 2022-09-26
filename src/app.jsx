@@ -1,12 +1,11 @@
-import "./app.css";
-import GlobalStyle from "./global";
-import Calendar from "./pages/calendar";
+import Home from "./pages/home";
+import GlobalStyle from "./global.styled";
 
 function App() {
   return (
     <div className="App">
       <GlobalStyle />
-      <Calendar />
+      <Home />
     </div>
   );
 }

@@ -1,21 +1,10 @@
 import styled, { css } from "styled-components";
 
-export default function Checkbox({ checked, handleCheckbox }) {
-  return (
-    <>
-      <CheckboxWrapper>
-        <CheckboxType type="checkbox" isChecked={checked} />
-        <Label onClick={handleCheckbox} isChecked={checked} />
-      </CheckboxWrapper>
-    </>
-  );
-}
-
-const CheckboxWrapper = styled.div`
+export const CheckboxWrapper = styled.div`
   position: relative;
 `;
 
-const CheckboxType = styled.input`
+export const CheckboxType = styled.input`
   visibility: hidden;
   ${({ isChecked }) =>
     isChecked
@@ -29,7 +18,7 @@ const CheckboxType = styled.input`
       : null}
 `;
 
-const Label = styled.label`
+export const Label = styled.label`
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 50%;

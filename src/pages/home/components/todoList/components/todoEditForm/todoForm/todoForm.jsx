@@ -1,7 +1,10 @@
 import React, { useRef, useState, useEffect } from "react";
-import * as S from "../todoForm/todoForm.styled";
-import * as B from "../../../../../style/button/button.styled";
-import Checkbox from "./checkbox/checkbox.styled";
+
+import Button from "components/button";
+
+import Checkbox from "./components/checkbox";
+
+import * as S from "./todoForm.styled";
 
 const TodoForm = ({ deleteTodo, createTodo, todoItem, checkTodo }) => {
   const [editedMode, setEditedMode] = useState(false);
@@ -83,20 +86,14 @@ const TodoForm = ({ deleteTodo, createTodo, todoItem, checkTodo }) => {
           // check 상태 (=완료된 항목) 때 수정버튼 숨기기
           !todoItem.checked ? (
             editedMode ? (
-              <B.StyleButton type="button" onClick={toggleEditButton}>
-                <B.IconTumbsUp />
-              </B.StyleButton>
+              <Button type="tumbsup" handleClick={toggleEditButton} />
             ) : (
-              <B.StyleButton type="button" onClick={toggleEditButton}>
-                <B.IconPencil />
-              </B.StyleButton>
+              <Button type="pencil" handleClick={toggleEditButton} />
             )
           ) : null
         }
 
-        <B.StyleButton onClick={deletedTodo}>
-          <B.IconTrashbin />
-        </B.StyleButton>
+        <Button type="trashbin" handleClick={deletedTodo} />
       </S.Li>
     </>
   );

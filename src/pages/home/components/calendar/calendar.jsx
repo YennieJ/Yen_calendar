@@ -1,18 +1,24 @@
 import React from "react";
-import dayjs from "dayjs";
-import * as S from "./calendarBody.styled";
 
-const CalendarBody = ({ date, todoDate, setTodoDate, controlMonth }) => {
+import dayjs from "dayjs";
+
+import * as S from "./calendar.styled";
+
+const Calendar = ({ date, todoDate, setTodoDate, controlMonth }) => {
   const weekday = require("dayjs/plugin/weekday");
   dayjs.extend(weekday);
 
-  // 요일
+  // 요일배열
   const week = [];
+  // 초기값은 오늘
+  const today = date;
+  // 날짜배열
+  const dates = [];
+
   for (let i = 0; i < 7; i++) {
     week.push(<S.Text key={i}>{dayjs().weekday(i).format("ddd")}</S.Text>);
   }
-  // 초기값은 오늘
-  const today = date;
+
   // 진짜 오늘을 위해서
   const fixedToday = dayjs();
 
@@ -26,8 +32,6 @@ const CalendarBody = ({ date, todoDate, setTodoDate, controlMonth }) => {
       ? 53
       : today.clone().endOf("month").week();
 
-  // dates 라는 빈배열을 만듬.
-  const dates = [];
   for (let week = startWeek; week <= endWeek; week++) {
     for (let i = 0; i < 7; i++) {
       let current = today.startOf("week").week(week).add(i, "day");
@@ -77,7 +81,7 @@ const CalendarBody = ({ date, todoDate, setTodoDate, controlMonth }) => {
   );
 };
 
-export default CalendarBody;
+export default Calendar;
 
 // 비포
 // const weekday = require("dayjs/plugin/weekday");
