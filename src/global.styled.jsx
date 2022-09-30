@@ -9,12 +9,10 @@ input,button{border:none;outline:none}
 input{
   font-size: 1rem;
   border-bottom: 1px solid black;
-  width: 70%;
-  padding: 0;
 }
 button{cursor:pointer}
 ul,li{list-style:none;
-margin-left:5px;
+margin: 0;
 padding:0}
 `;
 

@@ -1,13 +1,13 @@
 import styled, { css } from "styled-components";
 
+export const TodoList = styled.div`
+  width: 58%;
+  margin-top: 16px;
+  margin-left: 20px;
+`;
+
 export const GridTodoEdit = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-items: center;
-  margin: 2rem;
-`;
-
-export const FontTodoDate = styled.div`
-  font-size: 1rem;
-  margin-top: 2rem;
 `;

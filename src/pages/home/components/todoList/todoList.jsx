@@ -5,17 +5,7 @@ import TodoAddForm from "./components/todoAddForm";
 
 import * as S from "./todoList.styled";
 
-const TodoList = ({ todoDate }) => {
-  const [todos, setTodos] = useState(() => {
-    if (typeof window !== "undefined") {
-      const saved = window.localStorage.getItem("Todo_Data");
-      if (saved !== null) {
-        return JSON.parse(saved);
-      } else {
-        return [];
-      }
-    }
-  });
+const TodoList = ({ todos, setTodos, todoDate, showDate }) => {
   // 로컬스토리지 생성
   useEffect(() => {
     window.localStorage.setItem("Todo_Data", JSON.stringify(todos));
@@ -45,10 +35,9 @@ const TodoList = ({ todoDate }) => {
   //todo = todoitem / todos에 저장된 하나의 아이템 ,,
 
   return (
-    <div>
+    <S.TodoList>
       {/* Todo item input form */}
       <TodoAddForm createTodo={createTodo} todos={todos} todoDate={todoDate} />
-      <S.FontTodoDate>{todoDate}</S.FontTodoDate>
 
       {/* Todo Item show and edit form */}
       {/* checkedList : false N true(uncheck N check)를 통해서 해야 할 일과 완료 된 일 구분하기  */}
@@ -74,7 +63,7 @@ const TodoList = ({ todoDate }) => {
           checkedList={true}
         />
       </S.GridTodoEdit>
-    </div>
+    </S.TodoList>
   );
 };
 

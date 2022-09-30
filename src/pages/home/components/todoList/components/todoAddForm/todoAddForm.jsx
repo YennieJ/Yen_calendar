@@ -36,10 +36,10 @@ const TodoAddForm = ({ createTodo, todoDate }) => {
     <>
       {/* 아이템 입력 창 */}
       {/* <div>오늘의 할 일??개</div> */}
-      <form ref={formRef}>
+      <S.Container ref={formRef}>
         <S.TodoInput ref={todoRef} onKeyPress={handleAddTodo} />
         <Button type="plus" handleClick={addTodoButton} />
-      </form>
+      </S.Container>
     </>
   );
 };

@@ -1,8 +1,10 @@
 import styled from "styled-components";
 
-export const HomeStyle = styled.div`
-  display: grid;
-  grid-template-columns: 1.5fr 2.5fr;
-  grid-gap: 1rem;
-  margin: 1rem 10rem;
+export const HomeStyle = styled.div``;
+
+export const HomeBodyStyle = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 1rem;
 `;

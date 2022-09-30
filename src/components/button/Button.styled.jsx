@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { TrashFill } from "@styled-icons/bootstrap";
-import { Pencil } from "@styled-icons/evil";
+import { Pencil } from "@styled-icons/bootstrap";
 import { HandThumbsUpFill } from "@styled-icons/bootstrap";
 import { ChevronLeft } from "@styled-icons/boxicons-solid";
 import { ChevronRight } from "@styled-icons/boxicons-solid";
@@ -14,8 +14,10 @@ export const IconRight = styled(ChevronRight)``;
 export const IconPlus = styled(PlusCircle)``;
 
 export const Button = styled.button`
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   border: 2px solid transparent;
+  font-size: 10px;
+  /* ${(props) => console.log(props)} */
 `;

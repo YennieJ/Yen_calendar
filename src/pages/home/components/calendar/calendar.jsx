@@ -4,9 +4,18 @@ import dayjs from "dayjs";
 
 import * as S from "./calendar.styled";
 
-const Calendar = ({ date, todoDate, setTodoDate, controlMonth }) => {
+const Calendar = ({
+  date,
+  todoDate,
+  setTodoDate,
+  controlMonth,
+  setShowDate,
+  todos,
+}) => {
   const weekday = require("dayjs/plugin/weekday");
+  const weekOfYear = require("dayjs/plugin/weekOfYear");
   dayjs.extend(weekday);
+  dayjs.extend(weekOfYear);
 
   // 요일배열
   const week = [];
@@ -35,6 +44,14 @@ const Calendar = ({ date, todoDate, setTodoDate, controlMonth }) => {
   for (let week = startWeek; week <= endWeek; week++) {
     for (let i = 0; i < 7; i++) {
       let current = today.startOf("week").week(week).add(i, "day");
+
+      const selectedDateData = Object.keys(todos).filter(
+        (item) => todos[item].date === current.format("YYYYMMDD")
+      );
+
+      //할일이 있나요?
+      let checkTodoThings = selectedDateData.length > 0;
+
       //오늘 표시하기
       let isToday =
         fixedToday.format("YYYYMMDD") === current.format("YYYYMMDD");
@@ -53,22 +70,31 @@ const Calendar = ({ date, todoDate, setTodoDate, controlMonth }) => {
           controlMonth(1);
         }
         setTodoDate(current.format("YYYYMMDD"));
+        setShowDate(current.format("D일"));
       };
 
       dates.push(
-        <S.CheckDate
-          isToday={isToday}
-          isGrayed={isGrayed}
-          selectDate={selectDate}
-          onClick={selectedDate}
-        >
-          {current.format("DD")}
-        </S.CheckDate>
+        <>
+          <S.CheckDate
+            className="체크데이트"
+            isToday={isToday}
+            isGrayed={isGrayed}
+            selectDate={selectDate}
+            onClick={selectedDate}
+          >
+            {current.format("DD")}
+          </S.CheckDate>
+          <S.checkTodoThings
+            className="체크투두띵스"
+            checkTodoThings={checkTodoThings}
+          />
+        </>
       );
     }
   }
+
   const currentDate = dates.map((date, i) => (
-    <S.Text date key={i}>
+    <S.Text className="텍스트" date key={i}>
       {date}
     </S.Text>
   ));

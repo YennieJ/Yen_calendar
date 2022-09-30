@@ -2,18 +2,24 @@ import styled, { css } from "styled-components";
 
 export const Li = styled.li`
   display: grid;
-  width: 100%;
+  grid-gap: 10px;
+  width: 85%;
   margin-top: 10px;
-  place-items: left;
+  place-items: center;
+
   &:first-child {
     margin-top: 15px;
+  }
+  input {
+    text-align: center;
+    width: 80%;
   }
   ${({ checked }) =>
     checked
       ? css`
-          grid-template-columns: 20% 60% 20%;
+          grid-template-columns: 10% 80% 10%;
         `
       : css`
-          grid-template-columns: 20% 50% 15% 15%;
+          grid-template-columns: 10% 70% 10% 10%;
         `}
 `;

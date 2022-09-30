@@ -1,8 +1,8 @@
 import styled, { css } from "styled-components";
 
 export const TodoEditFormStyle = styled.section`
-  width: 85%;
-  height: 24rem;
+  width: 95%;
+  height: 30rem;
   padding: 20px 20px 100px;
   border-radius: 10px;
   background-color: #fff;
@@ -10,9 +10,19 @@ export const TodoEditFormStyle = styled.section`
 
   ul {
     border-top: 1px solid black;
-    height: 18rem;
-    overflow: auto;
-    scrollbar-width: none;
+    height: 25rem;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: grey;
+      border-radius: 10px;
+    }
+    &::-webkit-scrollbar-track {
+      background-color: white;
+    }
   }
   p {
     font-size: 1.5rem;

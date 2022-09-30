@@ -1,28 +1,43 @@
 import React from "react";
-import dayjs from "dayjs";
 
 import Button from "components/button";
 
 import * as S from "./header.styled";
 
-const Header = ({ today, date, setDate, setTodoDate, controlMonth }) => {
+const Header = ({
+  today,
+  date,
+  setDate,
+  setTodoDate,
+  controlMonth,
+  showDate,
+  setShowDate,
+}) => {
   //오늘로
   const goToday = () => {
     setDate(today);
     setTodoDate(today.format("YYYYMMDD"));
+    setShowDate(today.format("D일"));
   };
 
   return (
-    <div>
-      <S.FontYear>{date.format("YYYY")}</S.FontYear>
-      <S.GridMonth>
+    <S.Container>
+      <S.Month>
+        <div>
+          <div>{date.format("YYYY")}</div>
+          <div>{date.format("MMMM")}</div>
+        </div>
+        <S.Date>{showDate}</S.Date>
+      </S.Month>
+
+      <S.ControlMonth>
         {/* onClick 콜백함수 필요함(Too many lendering) */}
         <Button type="left" handleClick={() => controlMonth(0)} />
-        <S.FontMonth>{date.format("MMMM")}</S.FontMonth>
+        <Button type="goToday" handleClick={goToday} />
+
         <Button type="right" handleClick={() => controlMonth(1)} />
-      </S.GridMonth>
-      <S.ButtonToday onClick={goToday}>Today</S.ButtonToday>
-    </div>
+      </S.ControlMonth>
+    </S.Container>
   );
 };
 

@@ -3,6 +3,7 @@ import React from "react";
 import * as S from "./Button.styled";
 
 function Button(props) {
+  // console.log(props);
   return (
     <S.Button type="button" onClick={props.handleClick}>
       {props.type === "trashbin" && <S.IconTrashbin />}
@@ -11,6 +12,7 @@ function Button(props) {
       {props.type === "left" && <S.IconLeft />}
       {props.type === "right" && <S.IconRight />}
       {props.type === "plus" && <S.IconPlus />}
+      {props.type === "goToday" && "Today"}
     </S.Button>
   );
 }
