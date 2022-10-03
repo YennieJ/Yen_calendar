@@ -45,7 +45,7 @@ export const CheckDate = styled.span`
     css`
       background-color: black;
       color: aliceblue;
-      border-radius: 50%;
+      border-radius: 100px;
     `}
 `;
 export const checkTodoThings = styled.div`

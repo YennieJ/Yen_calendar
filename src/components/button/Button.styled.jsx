@@ -19,5 +19,7 @@ export const Button = styled.button`
   border-radius: 50%;
   border: 2px solid transparent;
   font-size: 10px;
-  /* ${(props) => console.log(props)} */
+  &.goToday {
+    width: 100px;
+  }
 `;
